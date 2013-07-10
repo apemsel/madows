@@ -111,6 +111,12 @@ abbr {
   border-bottom: 1px dashed #CDCDCD;
 }
 
+nav a {
+  margin: 0 1.0em 0 0;
+  color: #cdcdcd;
+  font-size: 1.0em;
+}
+
 #TOC {
   -webkit-transition:top 0.4s, opacity 0.4s;
   -moz-transition:top 0.4s, opacity 0.4s;
@@ -123,6 +129,7 @@ abbr {
   -moz-box-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
   -o-box-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
   box-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
+  display: none;
 }
 #TOC li {
   font-family: "MuseoSlab", sans-serif;
