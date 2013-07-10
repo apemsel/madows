@@ -1,4 +1,4 @@
 {
-  "parser": "MarkdownParser",
+  "parser": "MarkdownExtraParser",
   "template": "madows/madows.php"
 }

@@ -18,26 +18,26 @@ class Madows
   protected $config;
   protected $parser;
   protected static $defaults = array(
-    "parser" => "MarkdownParser",
+    "parser" => "MarkdownExtraParser",
     "template" => "madows/madows.php"
   );
 
   public function __construct($config_file) 
   {
     if (!$json = file_get_contents($config_file)) {
-      error("unable to read ".$config_file);
+      self::error("unable to read ".$config_file);
     }
     
     $this->config = json_decode($json, true);
     if (!$this->config) {
-      error("unable to parse ".self::CONFIG_FILE);
+      self::error("unable to parse ".self::CONFIG_FILE);
     }
     
     $this->config = array_merge(self::$defaults, $this->config);
 
     $parser_class = "dflydev\\markdown\\".$this->config["parser"];
     if (!class_exists($parser_class)) {
-      error("parser not found");
+      self::error("parser not found");
     }
 
     $this->parser = new $parser_class();
@@ -47,28 +47,28 @@ class Madows
   {
     $url_parts = parse_url($request);
     if (!$url_parts) {
-      error("unable to parse URI");
+      self::error("unable to parse URI");
     }
     
     if (!isset($url_parts["path"]) or preg_match("/^\./", $url_parts["path"])) {
-      error("illegal path");
+      self::error("illegal path");
     }
 
     $markdown_file = basename($url_parts["path"]);
     if (!file_exists($markdown_file)) {
-      error("file not found: $markdown_file", 404);
+      self::error("file not found: $markdown_file", 404);
     }
     
     $markdown = file_get_contents($markdown_file);
     if (!$markdown) {
-      error("unable to read: $requested");
+      self::error("unable to read: $requested");
     }
     
     $body = $this->parser->transformMarkdown($markdown);
 
     $template_file = self::TEMPLATE_DIR.DIRECTORY_SEPARATOR.$this->config["template"];
     if(!file_exists($template_file)) {
-      error("file not found: ".$template_file);
+      self::error("file not found: ".$template_file);
     }
     
     $this->render($template_file, array(
@@ -83,7 +83,7 @@ class Madows
     require($template_file);
   }
   
-  public function error($message, $code = 500)
+  public static function error($message, $code = 500)
   {
     @header("HTTP/1.1 $code");
     @header("Content-type: text/html");
