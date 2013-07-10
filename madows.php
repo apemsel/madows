@@ -119,10 +119,10 @@ class Madows
     preg_match_all("/(<h([1-6]{1})[^<>]*>)(.+)(<\/h[1-6]{1}>)/", $body, $matches, PREG_SET_ORDER);
     foreach($matches as $match) {
       if ($match[2]>$level) {
-        $toc .= str_repeat("<ul>", $match[2]-$level);
+        $toc .= str_repeat("<li><ul>", $match[2]-$level);
       }
       elseif ($match[2]<$level) {
-        $toc .= str_repeat("</ul>", $level-$match[2]);
+        $toc .= str_repeat("</ul></li>", $level-$match[2]);
       }
       $level = $match[2];
       
