@@ -1,0 +1,9 @@
+Options +FollowSymLinks
+IndexIgnore */*
+
+# display Markdown as HTML
+RewriteEngine on
+RewriteRule .+\.(markdown|mdown|md|mkd)$ /madows.php
+RewriteRule .+\.(markdown|mdown|md|mkd)\-markdown$ /madows.php [L]
+
+Redirect /index.html /index.md
