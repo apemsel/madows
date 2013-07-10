@@ -1,0 +1,14 @@
+{
+    "name": "apemsel/madows",
+    "description": "A micro CMS using markdown documents",
+    "license": "BSD 2-clause",
+    "authors": [
+        {
+            "name": "Adrian Pemsel",
+            "email": "ap@jusmeum.de"
+        }
+    ],
+    "require": {
+
+    }
+}
