@@ -19,7 +19,8 @@ class Madows
   protected $parser;
   protected static $defaults = array(
     "parser" => "MarkdownExtraParser",
-    "template" => "madows/madows.php"
+    "template" => "madows/madows.php",
+    "index" => "index.md"
   );
 
   public function __construct($config_file) 
@@ -55,6 +56,10 @@ class Madows
     }
 
     $markdown_file = basename($url_parts["path"]);
+    if (empty($markdown_file))
+    {
+      $markdown_file = $this->config["index"];
+    }
     if (!file_exists($markdown_file)) {
       self::error("file not found: $markdown_file", 404);
     }
@@ -71,9 +76,15 @@ class Madows
       self::error("file not found: ".$template_file);
     }
     
+    list($toc, $body) = $this->buildToc($body);
+    
+    // No reason to support anything but UTF-8 by now
+    header("Content-Type: text/html; charset=UTF-8"); 
+    
     $this->render($template_file, array(
       "body" => $body,
-      "title" => $markdown_file
+      "title" => preg_match("/<h[1-6]{1}[^<>]*>(.+)<\/h[1-6]{1}>/", $body, $matches) ? strip_tags($matches[1]) : $markdown_file,
+      "toc" => $toc
     ));
   }
   
@@ -81,6 +92,65 @@ class Madows
   {
     extract($context, true);
     require($template_file);
+  }
+  
+  public function slugify($s)
+  {
+    $patterns = array(
+      "/[^a-z0-9_ ]/",
+      "/[ _]+/"
+    );
+    
+    $replacements = array(
+      "",
+      "_"
+    );
+    
+    return trim(preg_replace($patterns, $replacements, mb_strtolower(strip_tags($s), "UTF-8")));
+  }
+  
+  protected function buildToc($body)
+  {
+    $toc = '<ul>';
+    $level = 1;
+    $search = $replace = $anchors = array();
+    
+    // Find all headings and create TOC
+    preg_match_all("/(<h([1-6]{1})[^<>]*>)(.+)(<\/h[1-6]{1}>)/", $body, $matches, PREG_SET_ORDER);
+    foreach($matches as $match) {
+      if ($match[2]>$level) {
+        $toc .= str_repeat("<ul>", $match[2]-$level);
+      }
+      elseif ($match[2]<$level) {
+        $toc .= str_repeat("</ul>", $level-$match[2]);
+      }
+      $level = $match[2];
+      
+      $anchor = $this->slugify($match[3]);
+      
+      // Ensure anchors are unique
+      if (in_array($anchor, $anchors)){
+        $anchor .= '-1';
+      }
+      $num = 1;
+      while (in_array($anchor, $anchors)) {
+        $anchor = str_replace('-'.$num, '-'.($num+1), $anchor);
+      }
+      
+      $toc .= '<li><a href="#'.$anchor.'">'.$match[3]."</a></li>";
+      $search[] = $match[0];
+      $replace[] = "<h".$match[2].' id="'.$anchor.'">'.$match[3]."</h".$match[2].">";
+    }
+    
+    // Close any remaining open <ul>s
+    for(; $level; $level--) {
+      $toc .= "</ul>";  
+    }
+    
+    // Replace headings with headings that have IDs
+    $body = str_replace($search, $replace, $body);
+    
+    return array($toc, $body);
   }
   
   public static function error($message, $code = 500)

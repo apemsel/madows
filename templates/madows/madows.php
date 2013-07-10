@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="templates/madows/css/print.css" type="text/css" media="print">
   </head>
   <body>
-    <?php echo $body ?>
+    <section id="TOC">
+      <?php echo $toc ?>  
+    </section>
+    <section class="article">
+      <?php echo $body ?>
+    </section>
   </body>
 </html>
