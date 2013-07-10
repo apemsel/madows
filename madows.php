@@ -4,32 +4,36 @@ namespace apemsel\madows;
 
 require("vendor/autoload.php");
 
-
-$madows = new Madows();
-$madows->serve($_SERVER["REQUEST_URI"]);
-
 if (!isset($_SERVER["REQUEST_URI"])) {
   die("REQUEST_URI not set");
 }
 
+$madows = new Madows("madows.json");
+$madows->serve($_SERVER["REQUEST_URI"]);
+
 class Madows
 {
-  const CONFIG_FILE = "madows.json";
   const TEMPLATE_DIR = "templates";
 
   protected $config;
   protected $parser;
+  protected static $defaults = array(
+    "parser" => "MarkdownParser",
+    "template" => "madows/madows.php"
+  );
 
-  public function __construct() 
+  public function __construct($config_file) 
   {
-    if (!$config = file_get_contents(self::CONFIG_FILE)) {
-      error("unable to read ".self::CONFIG_FILE);
+    if (!$json = file_get_contents($config_file)) {
+      error("unable to read ".$config_file);
     }
     
-    $this->config = json_decode(file_get_contents("madows.json"), true);
+    $this->config = json_decode($json, true);
     if (!$this->config) {
       error("unable to parse ".self::CONFIG_FILE);
     }
+    
+    $this->config = array_merge(self::$defaults, $this->config);
 
     $parser_class = "dflydev\\markdown\\".$this->config["parser"];
     if (!class_exists($parser_class)) {
@@ -73,13 +77,13 @@ class Madows
     ));
   }
   
-  function render($template_file, $context) 
+  public function render($template_file, $context) 
   {
     extract($context, true);
     require($template_file);
   }
   
-  function error($message, $code = 500)
+  public function error($message, $code = 500)
   {
     @header("HTTP/1.1 $code");
     @header("Content-type: text/html");
