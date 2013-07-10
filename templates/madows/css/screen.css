@@ -1,0 +1,147 @@
+body, p, li, div, h1, h2, h3, h4, h5, h6, th, td {
+  color: #4C4C4C;
+  font-family: sans-serif;
+}
+body {
+  margin: 1em 8em;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: sans-serif;
+  text-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
+  margin-top:2em;
+}
+.permalink {
+  -webkit-transition: opacity 1.0s;
+  -moz-transition: opacity 1.0s;
+  -o-transition: opacity 1.0s;
+  transition: opacity 1.0s;
+  opacity: 0;
+  visibility: hidden;
+  margin: 0 0 0 0.25em;
+}
+h1:hover .permalink, h2:hover .permalink,
+h3:hover .permalink, h4:hover .permalink,
+h5:hover .permalink, h6:hover .permalink {
+  opacity: 1;
+  visibility: visible;
+}
+@media (max-width: 700px) {
+  body, th, td {
+    margin: 1em 1em;
+    font-size: smaller;
+  }
+}
+@media (max-device-width: 480px) {
+  body {
+    margin: 1em 1em;
+    max-width: 56em;
+    font-family: sans-serif;
+    font-size: xx-large;
+  }
+  pre {
+    font-size: x-large;
+  }
+}
+code {
+  font-family: Inconsolata, Consolas, monospace;
+  font-weight: bold;
+  font-size: small;
+}
+pre {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px inset;
+  -moz-box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px inset;
+  -o-box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px inset;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px inset;
+  background-color: #EEE;
+  border: 1px solid #DDD;
+  border-radius: 3px;
+  padding: 0.4em;
+  margin: 0px 1em;
+  max-width: 56em;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-weight: normal;
+}
+pre code {
+  font-weight: normal;
+}
+dd {
+  margin-bottom: 1em;
+}
+dt {
+  font-style: italic;
+}
+dd p {
+  margin-top: 0px;
+}
+dd pre {
+  margin: 1em 0px;
+}
+blockquote {
+  border-left: 3px solid #B6B6B6;
+  margin: 1em;
+  padding-left: 1em;
+}
+a {
+  text-decoration: none;
+  color: #0064a0;
+  -webkit-transition: color 1.0s;
+  -moz-transition: color 1.0s;
+  -o-transition: color 1.0s;
+  transition: color 1.0s;
+}
+a:hover {
+  color: #000;
+}
+
+li p {
+  margin-top: 0px;
+}
+li pre {
+  margin-bottom: 1em;
+}
+th {
+  background-color: #EDEDED;
+}
+td, th {
+  margin: 0px;
+  padding: 0.1em 1em;
+}
+abbr {
+  border-bottom: 1px dashed #CDCDCD;
+}
+
+#TOC {
+  -webkit-transition:top 0.4s, opacity 0.4s;
+  -moz-transition:top 0.4s, opacity 0.4s;
+  -o-transition:top 0.4s, opacity 0.4s;
+  transition:top 0.4s, opacity 0.4s;
+  padding: 0.5em 0em;
+  background: #EDEDED;
+  border:solid 5px #fff;
+  -webkit-box-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
+  -moz-box-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
+  -o-box-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
+  box-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
+}
+#TOC li {
+  font-family: "MuseoSlab", sans-serif;
+  padding: 2px 0px 0px 0px;
+  list-style-type: none;
+}
+#TOC ul {
+  margin: 0px;
+  padding: 0px 0px 0px 1.5em;
+}
+
+img {
+  border:solid 5px #fff;
+  -webkit-transform: rotate(-4deg);
+  -moz-transform: rotate(-4deg);
+  -o-transform: rotate(-4deg);
+  transform: rotate(-4deg);
+  -webkit-box-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
+  -moz-box-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
+  -o-box-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
+  box-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
+}
