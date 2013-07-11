@@ -5,11 +5,17 @@ body, p, li, div, h1, h2, h3, h4, h5, h6, th, td {
 body {
   margin: 0em 8em;
 }
+
 h1, h2, h3, h4, h5, h6 {
   font-family: sans-serif;
   text-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
   margin-top:2em;
 }
+
+h1:first-child{
+  margin-top: 1.0em;
+}
+
 .permalink {
   -webkit-transition: opacity 1.0s;
   -moz-transition: opacity 1.0s;
@@ -113,12 +119,12 @@ abbr {
 
 nav {
   margin: 0.5em 0;
+  font-size: 1.4em;
 }
 
 nav a {
-  margin: 0 1.0em 0 0;
+  margin: 0 1em 0 0;
   color: #cdcdcd;
-  font-size: 1.0em;
 }
 
 #TOC {
