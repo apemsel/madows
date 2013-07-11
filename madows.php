@@ -20,7 +20,8 @@ class Madows
   protected static $defaults = array(
     "parser" => "MarkdownExtraParser",
     "template" => "madows/madows.php",
-    "index" => "index.md"
+    "index" => "index.md",
+    "serveExtensions" => array("markdown", "mdown", "mkd", "md", "gif", "png", "jpg", "jpeg")
   );
 
   public function __construct($config_file) 
@@ -55,9 +56,13 @@ class Madows
       self::error("illegal path");
     }
 
-    $markdown_file = basename($url_parts["path"]);
-    if (empty($markdown_file))
-    {
+    $path_parts = pathinfo($url_parts["path"]);
+    if (!in_array($path_parts["extension"], $this->config["serveExtensions"])) {
+      self::error("access denied", 401);
+    }
+    
+    $markdown_file = $path_parts["basename"];
+    if (empty($markdown_file)) {
       $markdown_file = $this->config["index"];
     }
     if (!file_exists($markdown_file)) {
