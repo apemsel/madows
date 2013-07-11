@@ -11,6 +11,7 @@
       <nav>
         <a href="/">Index</a>
         <a id="toggle_toc" href="javascript:toggleDisplay('TOC')">Table of Contents</a>
+        <a href="<?php echo $_SERVER['REQUEST_URI'].'-source' ?>">Source</a>
       </nav>
       <section id="TOC">
         <?php echo $toc ?>  

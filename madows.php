@@ -57,11 +57,12 @@ class Madows
     }
 
     $path_parts = pathinfo($url_parts["path"]);
-    if (!in_array($path_parts["extension"], $this->config["serveExtensions"])) {
+    $markdown_file = $path_parts["basename"];
+    if (!empty($markdown_file) and !in_array($path_parts["extension"], $this->config["serveExtensions"])) {
       self::error("access denied", 401);
     }
     
-    $markdown_file = $path_parts["basename"];
+
     if (empty($markdown_file)) {
       $markdown_file = $this->config["index"];
     }

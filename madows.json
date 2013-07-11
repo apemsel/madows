@@ -1,4 +1,5 @@
 {
   "parser": "MarkdownExtraParser",
-  "template": "madows/madows.php"
+  "template": "madows/madows.php",
+  "index": "README.md"
 }

@@ -1,7 +1,7 @@
 function toggleDisplay(targetId) {
   var target = document.getElementById(targetId);
-  
-  if (target.style.display == "none")
+
+  if (target.style.display != "block")
   {
     target.style.display = "block";
   }
