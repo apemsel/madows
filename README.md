@@ -1,6 +1,6 @@
 madows
 ======
-A micro CMS using markdown documents
+A micro CMS using markdown documents  
 Serves markdown files on a webserver as HTML5.
 
 ## Features
