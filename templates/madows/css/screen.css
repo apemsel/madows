@@ -7,7 +7,23 @@ body {
 }
 
 .page {
-  margin: 0 8em;
+  margin: 1em 8em;
+}
+
+nav {
+  font-size: 1.4em;
+  width: 1em;
+  position: fixed;
+  top: 1em;
+  left: 1em;
+}
+
+nav a {
+  display: inline-block;
+  margin-bottom: 0.5em;
+  text-align: center;
+  width: 1em;
+  color: #cdcdcd;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -123,21 +139,6 @@ td, th {
 }
 abbr {
   border-bottom: 1px dashed #CDCDCD;
-}
-
-nav {
-  margin: 0 0 0 1em;
-  font-size: 1.4em;
-  width: 1em;
-  float:left;
-}
-
-nav a {
-  display: inline-block;
-  margin-bottom: 0.5em;
-  text-align: center;
-  width: 1em;
-  color: #cdcdcd;
 }
 
 #TOC {
