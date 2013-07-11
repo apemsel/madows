@@ -75,7 +75,16 @@ class Madows
       self::error("unable to read: $requested");
     }
     
-    $body = $this->parser->transformMarkdown($markdown);
+    if (isset($_REQUEST["source"]))
+    {
+      header("Content-Type: text/plain; charset=UTF-8");      
+      echo $markdown;
+      die();
+    }
+    else
+    {
+      $body = $this->parser->transformMarkdown($markdown);
+    }
 
     $template_file = self::TEMPLATE_DIR.DIRECTORY_SEPARATOR.$this->config["template"];
     if(!file_exists($template_file)) {
