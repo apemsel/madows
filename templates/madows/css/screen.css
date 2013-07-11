@@ -3,7 +3,7 @@ body, p, li, div, h1, h2, h3, h4, h5, h6, th, td {
   font-family: sans-serif;
 }
 body {
-  margin: 1em 8em;
+  margin: 0em 8em;
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: sans-serif;
@@ -109,6 +109,10 @@ td, th {
 }
 abbr {
   border-bottom: 1px dashed #CDCDCD;
+}
+
+nav {
+  margin: 0.5em 0;
 }
 
 nav a {
