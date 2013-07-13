@@ -26,6 +26,10 @@ nav a {
   color: #cdcdcd;
 }
 
+nav a.active {
+  color: #333;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: sans-serif;
   text-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
@@ -141,26 +145,35 @@ abbr {
   border-bottom: 1px dashed #CDCDCD;
 }
 
-#TOC {
-  -webkit-transition:top 0.4s, opacity 0.4s;
-  -moz-transition:top 0.4s, opacity 0.4s;
-  -o-transition:top 0.4s, opacity 0.4s;
-  transition:top 0.4s, opacity 0.4s;
-  padding: 0.5em 0em;
-  background: #EDEDED;
-  border:solid 5px #fff;
+#toc {
+  position:absolute;
+  top:1em;
+  left:4em;
+  -webkit-transition:opacity 0.4s;
+  -moz-transition:opacity 0.4s;
+  -o-transition:opacity 0.4s;
+  transition:opacity 0.4s;
+  padding: 1.0em 2.0em 1.0em 0;
+  background: rgba(250,250,250,0.9);
   -webkit-box-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
   -moz-box-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
   -o-box-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
   box-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
   display: none;
+  opacity: 0;
 }
-#TOC li {
+
+#toc.visible {
+  display:block;
+  opacity: 1;
+}
+
+#toc li {
   font-family: "MuseoSlab", sans-serif;
   padding: 2px 0px 0px 0px;
   list-style-type: none;
 }
-#TOC ul {
+#toc ul {
   margin: 0px;
   padding: 0px 0px 0px 1.5em;
 }

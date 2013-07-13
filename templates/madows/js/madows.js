@@ -1,12 +1,15 @@
-function toggleDisplay(targetId) {
-  var target = document.getElementById(targetId);
+function toggleTOC() {
+  var toc = document.getElementById("toc");
 
-  if (target.style.display != "block")
+  if (toc.className != "visible")
   {
-    target.style.display = "block";
+    toc.className = "visible";
+    toc.style.top = window.pageYOffset+20+"px";
+    document.getElementById("toggle_toc").className = "active";
   }
   else
   {
-    target.style.display ="none";
+    toc.className = "";
+    document.getElementById("toggle_toc").className = "";
   }
 }

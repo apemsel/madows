@@ -10,12 +10,12 @@
   <body>
     <nav>
       <a href="/"><i class="icon-home" title="Home"></i></a>
-      <a id="toggle_toc" href="javascript:toggleDisplay('TOC')"><i class="icon-list" title="Table of Contents"></i></a>
+      <a id="toggle_toc" href="javascript:toggleTOC()"><i class="icon-list" title="Table of Contents"></i></a>
       <a href="<?php echo $_SERVER['REQUEST_URI'].'?source' ?>"><i class="icon-file-text" title="Markdown"></i></a>
     </nav>
     <section class="page">
       <header>
-        <section id="TOC">
+        <section id="toc">
           <?php echo $toc ?>  
         </section>
       </header>
