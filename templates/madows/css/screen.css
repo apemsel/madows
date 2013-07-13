@@ -11,23 +11,36 @@ body {
 }
 
 nav {
-  font-size: 1.4em;
-  width: 1em;
+  font-size: 1.2em;
   position: fixed;
   top: 1em;
   left: 1em;
 }
 
 nav a {
-  display: inline-block;
+  display: block;
   margin-bottom: 0.5em;
-  text-align: center;
-  width: 1em;
+  text-align: left;
   color: #cdcdcd;
+  z-index: 100;
 }
 
 nav a.active {
   color: #333;
+}
+
+nav a span {
+  display: none;
+  background: rgba(250,250,250,0.9);
+  -webkit-box-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
+  -moz-box-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
+  -o-box-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
+  box-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
+  padding: 0.1em 0.5em;
+}
+
+nav a:hover span {
+  display: inline;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -86,10 +99,9 @@ pre {
   -moz-box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px inset;
   -o-box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px inset;
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px inset;
-  background-color: #EEE;
+  background: rgba(250,250,250,0.9);
   border: 1px solid #DDD;
-  border-radius: 3px;
-  padding: 0.4em;
+  padding: 0.5em;
   margin: 0px 1em;
   max-width: 56em;
   white-space: pre-wrap;

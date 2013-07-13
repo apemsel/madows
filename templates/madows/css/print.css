@@ -1,0 +1,11 @@
+nav {
+  display: none;
+}
+
+#toc {
+  display: block;
+  opacity: 1;
+  position: relative;
+  left: 0em;
+  margin-bottom: 2em;
+}
