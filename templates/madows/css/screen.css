@@ -192,10 +192,6 @@ abbr {
 
 img {
   border:solid 5px #fff;
-  -webkit-transform: rotate(-4deg);
-  -moz-transform: rotate(-4deg);
-  -o-transform: rotate(-4deg);
-  transform: rotate(-4deg);
   -webkit-box-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
   -moz-box-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
   -o-box-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
