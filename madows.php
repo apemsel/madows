@@ -81,9 +81,14 @@ class Madows
       echo $markdown;
       die();
     }
+    elseif (isset($_REQUEST["edit"]))
+    {
+      $body = "<textarea>".$markdown."</textarea>";
+    }
     else
     {
       $body = $this->parser->transformMarkdown($markdown);
+      list($toc, $body) = $this->buildToc($body);
     }
 
     $template_file = self::TEMPLATE_DIR.DIRECTORY_SEPARATOR.$this->config["template"];
@@ -91,7 +96,7 @@ class Madows
       self::error("file not found: ".$template_file);
     }
     
-    list($toc, $body) = $this->buildToc($body);
+    
     
     // No reason to support anything but UTF-8 by now
     header("Content-Type: text/html; charset=UTF-8"); 
@@ -154,7 +159,7 @@ class Madows
       
       $toc .= '<li><a href="#'.$anchor.'">'.$match[3]."</a></li>";
       $search[] = $match[0];
-      $replace[] = "<h".$match[2].' id="'.$anchor.'">'.$match[3]."</h".$match[2].">";
+      $replace[] = "<h".$match[2].' id="'.$anchor.'">'.$match[3].'<a href="'.$_SERVER["REQUEST_URI"]."#".$anchor.'" class="permalink"><i class="icon-link"></i></a></h'.$match[2].">";
     }
     
     // Close any remaining open <ul>s
