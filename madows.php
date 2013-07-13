@@ -79,7 +79,7 @@ class Madows
     {
       header("Content-Type: text/plain; charset=UTF-8");      
       echo $markdown;
-      die();
+      return;
     }
     elseif (isset($_REQUEST["edit"]))
     {
@@ -89,6 +89,7 @@ class Madows
     {
       $body = $this->parser->transformMarkdown($markdown);
       list($toc, $body) = $this->buildToc($body);
+      $docs = $this->getDocs(realpath().'./'.$path_parts["dirname"]);
     }
 
     $template_file = self::TEMPLATE_DIR.DIRECTORY_SEPARATOR.$this->config["template"];
@@ -96,15 +97,14 @@ class Madows
       self::error("file not found: ".$template_file);
     }
     
-    
-    
     // No reason to support anything but UTF-8 by now
     header("Content-Type: text/html; charset=UTF-8"); 
     
     $this->render($template_file, array(
       "body" => $body,
       "title" => preg_match("/<h[1-6]{1}[^<>]*>(.+)<\/h[1-6]{1}>/", $body, $matches) ? strip_tags($matches[1]) : $markdown_file,
-      "toc" => $toc
+      "toc" => $toc,
+      "documents" => $docs
     ));
   }
   
@@ -171,6 +171,15 @@ class Madows
     $body = str_replace($search, $replace, $body);
     
     return array($toc, $body);
+  }
+  
+  protected function getDocs($dir)
+  {
+    $files = scandir($dir);
+    $extensions = $this->config["serveExtensions"];
+    return array_filter($files, function($file) use ($extensions) {
+      return in_array(pathinfo($file, PATHINFO_EXTENSION), $extensions);
+    });
   }
   
   public static function error($message, $code = 500)

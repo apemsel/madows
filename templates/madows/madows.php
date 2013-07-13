@@ -10,13 +10,22 @@
   <body>
     <nav>
       <a href="/"><i class="icon-home icon-fixed-width"></i><span>Home</span></a>
-      <a id="toggle_toc" href="javascript:toggleTOC()"><i class="icon-list icon-fixed-width"></i><span>TOC</span></a>
-      <a href="<?php echo $_SERVER['REQUEST_URI'].'?source' ?>"><i class="icon-file-text icon-fixed-width"></i><span>Markdown</span></a>
+      <a id="toggle_documents" href="javascript:toggleDocuments()"><i class="icon-folder-close-alt icon-fixed-width"></i><span>Documents</span></a>
+      
+      <a id="toggle_toc" href="javascript:toggleTOC()"><i class="icon-reorder icon-fixed-width"></i><span>TOC</span></a>
+      <a href="<?php echo $_SERVER['REQUEST_URI'].'?source' ?>"><i class="icon-file-text-alt icon-fixed-width"></i><span>Markdown</span></a>
     </nav>
     <section class="page">
       <header>
         <section id="toc">
           <?php echo $toc ?>  
+        </section>
+        <section id="documents">
+          <ul>
+          <?php foreach($documents as $document): ?>
+            <li><a href="<?php echo $document ?>"><?php echo $document; ?></a></li>
+          <?php endforeach; ?>
+          </ul>
         </section>
       </header>
       <article>

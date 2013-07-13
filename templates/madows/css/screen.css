@@ -157,7 +157,7 @@ abbr {
   border-bottom: 1px dashed #CDCDCD;
 }
 
-#toc {
+#toc, #documents {
   position:absolute;
   top:1em;
   left:4em;
@@ -175,13 +175,13 @@ abbr {
   opacity: 0;
 }
 
-#toc.visible {
+#toc.visible, #documents.visible {
   display:block;
   opacity: 1;
 }
 
 #toc li {
-  font-family: "MuseoSlab", sans-serif;
+  font-family: sans-serif;
   padding: 2px 0px 0px 0px;
   list-style-type: none;
 }
@@ -190,8 +190,30 @@ abbr {
   padding: 0px 0px 0px 1.5em;
 }
 
+#documents {
+  padding:0;
+}
+
+#documents ul {
+  list-style: none;
+  padding: 0;
+  margin:0;
+}
+
+#documents ul li {
+  margin:0.5em;
+}
+
+
+#documents li:before
+{
+  font-family: FontAwesome;
+  content: '\f0f6';
+  margin: 0 1em;
+}
+
 img {
-  border:solid 5px #fff;
+  border:solid 1px #fff;
   -webkit-box-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
   -moz-box-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
   -o-box-shadow: rgba(35, 35, 35, 0.5) 0px 0px 3px;
