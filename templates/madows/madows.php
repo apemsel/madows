@@ -9,17 +9,8 @@
   </head>
   <body>
     <nav>
-      <a href="/"><i class="icon-home icon-fixed-width"></i><span>Home</span></a>
-      <a id="toggle_documents" href="javascript:toggleDocuments()"><i class="icon-folder-close-alt icon-fixed-width"></i><span>Documents</span></a>
-      
-      <a id="toggle_toc" href="javascript:toggleTOC()"><i class="icon-reorder icon-fixed-width"></i><span>TOC</span></a>
-      <a href="<?php echo $_SERVER['REQUEST_URI'].'?source' ?>"><i class="icon-file-text-alt icon-fixed-width"></i><span>Markdown</span></a>
-    </nav>
-    <section class="page">
-      <header>
-        <section id="toc">
-          <?php echo $toc ?>  
-        </section>
+      <a class="btn" href="/"><i class="icon-home icon-fixed-width"></i><span>Home</span></a>
+      <i class="btn icon-folder-close-alt icon-fixed-width">
         <section id="documents">
           <ul>
           <?php foreach($documents as $document): ?>
@@ -27,7 +18,15 @@
           <?php endforeach; ?>
           </ul>
         </section>
-      </header>
+      </i><div style="clear:both"></div>
+      <i class="btn icon-reorder icon-fixed-width">
+        <section id="toc">
+          <?php echo $toc ?>
+        </section>
+      </i>
+      <a class="btn" href="<?php echo $_SERVER['REQUEST_URI'].'?source' ?>"><i class="icon-file-text-alt icon-fixed-width"></i><span>Markdown</span></a>
+    </nav>
+    <section class="page">
       <article>
         <?php echo $body ?>
       </article>
