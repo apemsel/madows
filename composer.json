@@ -1,7 +1,7 @@
 {
   "name": "apemsel/madows",
   "description": "A micro CMS using markdown documents",
-  "license": "BSD 2-clause",
+  "license": "BSD-2-Clause",
   "authors": [
     {
       "name": "Adrian Pemsel",
@@ -9,6 +9,7 @@
     }
   ],
   "require": {
-    "dflydev/markdown": "v1.0.2"
+    "dflydev/markdown": "v1.0.3",
+    "twbs/bootstrap": "v3.0.2"
   }
 }
